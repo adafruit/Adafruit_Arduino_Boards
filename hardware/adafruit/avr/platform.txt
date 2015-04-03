@@ -1,0 +1,8 @@
+# Adafruit Trinket, Flora, Gemma Platform Configuration
+#
+# For more information see:
+# - https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5---3rd-party-Hardware-specification
+# - https://github.com/arduino/Arduino/wiki/Arduino-Hardware-Cores-migration-guide-from-1.0-to-1.6
+#
+name=Adafruit Boards
+version=1.0.0
