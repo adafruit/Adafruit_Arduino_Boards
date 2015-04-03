@@ -3,8 +3,8 @@
 Configuration and other support files to use Adafruit's boards like Trinket, 
 Pro Trinket, Gemma, Flora, and more with the Arduino IDE.  This is provided as
 a reference for modifying the Arduino IDE to support Adafruit's boards.  If you
-just want to program one of Adafruit's boards you probably want one of the pre-
-configured Arduino IDEs that Adafruit provides--see the learn system guide for
+just want to program one of Adafruit's boards you probably want one of the 
+preconfigured Arduino IDEs that Adafruit provides--see the learn system guide for
 your board for more details!
 
 These files are only compatible with the 1.6.x series of Arduino IDE and NOT the
