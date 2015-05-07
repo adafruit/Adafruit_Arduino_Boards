@@ -23,5 +23,25 @@ to the Arduino IDE folder and copy in files as follows:
     drivers should be installed when a Flora board is connected to the computer.
 
 NOTE: Arduino IDE version 1.6.2 has a bug with supporting external cores and
-DOES NOT work with these files.  Use Arduino 1.6.3, or an earlier version like
+DOES NOT work with these files.  Use Arduino 1.6.3+, or an earlier version like
 1.6.1.
+
+## Easy Install Scripts
+
+Three shell scripts exist in the root that can simplify the creation of
+modified Arduino IDEs with Adafruit's boards.  The scripts are build_linux.sh,
+build_windows.sh, and build_macosx.h and they require bash, tar, zip, and unzip
+(so they should really be run on Linux or OSX, however they have only been
+tested on Linux).  Each script takes two parameters, the first it the name of
+an input file that should be the Arduino IDE download for that platform, and
+the second is the output file.
+
+For example the IDE builds Adafruit publishes were built with commands like:
+
+./build_linux.sh arduino-1.6.4-linux32.tar.xz adafruit-arduino-1.6.4-linux32.tar.xz
+
+./build_linux.sh arduino-1.6.4-linux64.tar.xz adafruit-arduino-1.6.4-linux64.tar.xz
+
+./build_windows.sh arduino-1.6.4-windows.zip adafruit-arduino-1.6.4-windows.zip
+
+./build_macosx.sh arduino-1.6.4-macosx.zip adafruit-arduino-1.6.4-macosx.zip
