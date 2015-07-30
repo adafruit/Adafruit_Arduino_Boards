@@ -35,19 +35,50 @@ flora8.upload.tool=arduino:avrdude
 flora8.vid.0=0x239A
 flora8.pid.0=0x8004
 
+
+##############################################################
+# Flora Configuration
+bluefruitmicro.name=Adafruit Bluefruit Micro
+bluefruitmicro.bootloader.low_fuses=0xff
+bluefruitmicro.bootloader.high_fuses=0xd8
+bluefruitmicro.bootloader.extended_fuses=0xcb
+bluefruitmicro.bootloader.file=arduino:caterina/Caterina-Bluefruitmicro.hex
+bluefruitmicro.bootloader.unlock_bits=0x3F
+bluefruitmicro.bootloader.lock_bits=0x2F
+bluefruitmicro.bootloader.tool=arduino:avrdude
+bluefruitmicro.build.mcu=atmega32u4
+bluefruitmicro.build.f_cpu=8000000L
+bluefruitmicro.build.vid=0x239A
+bluefruitmicro.build.pid=0x800A
+bluefruitmicro.build.core=arduino:arduino
+bluefruitmicro.build.variant=bluefruitmicro
+bluefruitmicro.build.board=AVR_BLUEFRUITMICRO
+bluefruitmicro.build.usb_product="Bluefruit Micro"
+bluefruitmicro.build.usb_manufacturer="Adafruit"
+bluefruitmicro.build.extra_flags={build.usb_flags}
+bluefruitmicro.upload.protocol=avr109
+bluefruitmicro.upload.maximum_size=28672
+bluefruitmicro.upload.speed=57600
+bluefruitmicro.upload.disable_flushing=true
+bluefruitmicro.upload.use_1200bps_touch=true
+bluefruitmicro.upload.wait_for_upload_port=true
+bluefruitmicro.upload.tool=arduino:avrdude
+bluefruitmicro.vid.0=0x239A
+bluefruitmicro.pid.0=0x800A
+
 ##############################################################
 # Gemma Configuration
 gemma.name=Adafruit Gemma 8MHz
 gemma.bootloader.low_fuses=0xF1
 gemma.bootloader.high_fuses=0xD5
 gemma.bootloader.extended_fuses=0xFE
-gemma.bootloader.tool=avrdude
+gemma.bootloader.tool=arduino:avrdude
 gemma.build.mcu=attiny85
 gemma.build.f_cpu=8000000L
 gemma.build.core=arduino:arduino
 gemma.build.variant=tiny8
 gemma.build.board=AVR_GEMMA
-gemma.upload.tool=avrdude
+gemma.upload.tool=arduino:avrdude
 gemma.upload.maximum_size=5310
 
 ##############################################################
@@ -56,13 +87,13 @@ trinket3.name=Adafruit Trinket 8MHz
 trinket3.bootloader.low_fuses=0xF1
 trinket3.bootloader.high_fuses=0xD5
 trinket3.bootloader.extended_fuses=0xFE
-trinket3.bootloader.tool=avrdude
+trinket3.bootloader.tool=arduino:avrdude
 trinket3.build.mcu=attiny85
 trinket3.build.f_cpu=8000000L
 trinket3.build.core=arduino:arduino
 trinket3.build.variant=tiny8
 trinket3.build.board=AVR_TRINKET3
-trinket3.upload.tool=avrdude
+trinket3.upload.tool=arduino:avrdude
 trinket3.upload.maximum_size=5310
 
 ##############################################################
@@ -71,19 +102,39 @@ trinket5.name=Adafruit Trinket 16MHz
 trinket5.bootloader.low_fuses=0xF1
 trinket5.bootloader.high_fuses=0xD5
 trinket5.bootloader.extended_fuses=0xFE
-trinket5.bootloader.tool=avrdude
+trinket5.bootloader.tool=arduino:avrdude
 trinket5.build.mcu=attiny85
 trinket5.build.f_cpu=16000000L
 trinket5.build.core=arduino:arduino
 trinket5.build.variant=tiny8
 trinket5.build.board=AVR_TRINKET5
-trinket5.upload.tool=avrdude
+trinket5.upload.tool=arduino:avrdude
 trinket5.upload.maximum_size=5310
+
+##############################################################
+metro.name=Adafruit Metro
+metro.upload.tool=arduino:avrdude
+metro.upload.protocol=arduino
+metro.upload.maximum_size=32256
+metro.upload.maximum_data_size=2048
+metro.upload.speed=115200
+metro.bootloader.tool=arduino:avrdude
+metro.bootloader.low_fuses=0xFF
+metro.bootloader.high_fuses=0xDE
+metro.bootloader.extended_fuses=0x05
+metro.bootloader.unlock_bits=0x3F
+metro.bootloader.lock_bits=0x0F
+metro.bootloader.file=arduino:optiboot/optiboot_atmega328.hex
+metro.build.mcu=atmega328p
+metro.build.f_cpu=16000000L
+metro.build.board=AVR_METRO
+metro.build.core=arduino:arduino
+metro.build.variant=arduino:standard
 
 ##############################################################
 # Pro-Trinket 5V USB Programming Configuration
 protrinket5.name=Pro Trinket 5V/16MHz (USB)
-protrinket5.bootloader.tool=avrdude
+protrinket5.bootloader.tool=arduino:avrdude
 protrinket5.build.mcu=atmega328p
 protrinket5.build.f_cpu=16000000L
 protrinket5.build.core=arduino:arduino
@@ -96,7 +147,7 @@ protrinket5.upload.speed=115200
 ##############################################################
 # Pro-Trinket 3.3V USB Programming Configuration
 protrinket3.name=Pro Trinket 3V/12MHz (USB)
-protrinket3.bootloader.tool=avrdude
+protrinket3.bootloader.tool=arduino:avrdude
 protrinket3.build.mcu=atmega328p
 protrinket3.build.f_cpu=12000000L
 protrinket3.build.core=arduino:arduino
@@ -115,7 +166,7 @@ protrinket5ftdi.bootloader.extended_fuses=0x05
 protrinket5ftdi.bootloader.file=arduino:optiboot/optiboot_atmega328.hex
 protrinket5ftdi.bootloader.unlock_bits=0x3F
 protrinket5ftdi.bootloader.lock_bits=0x0F
-protrinket5ftdi.bootloader.tool=avrdude
+protrinket5ftdi.bootloader.tool=arudino:avrdude
 protrinket5ftdi.build.mcu=atmega328p
 protrinket5ftdi.build.f_cpu=16000000L
 protrinket5ftdi.build.core=arduino:arduino
@@ -129,7 +180,7 @@ protrinket5ftdi.upload.speed=115200
 ##############################################################
 # Pro-Trinket 3.3V Serial/FTDI Programming Configuration
 protrinket3ftdi.name=Pro Trinket 3V/12MHz (FTDI)
-protrinket3ftdi.bootloader.tool=avrdude
+protrinket3ftdi.bootloader.tool=arduino:avrdude
 protrinket3ftdi.bootloader.low_fuses=0xff
 protrinket3ftdi.bootloader.high_fuses=0xde
 protrinket3ftdi.bootloader.extended_fuses=0x05
@@ -145,3 +196,4 @@ protrinket3ftdi.upload.tool=arduino:avrdude
 protrinket3ftdi.upload.protocol=arduino
 protrinket3ftdi.upload.maximum_size=28672
 protrinket3ftdi.upload.speed=115200
+
