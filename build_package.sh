@@ -25,7 +25,7 @@
 
 PACKAGE_VERSION="1.3.0"
 read -p "VERSION [${PACKAGE_VERSION}]: " input
-PACKAGE_VERSION="$input"
+PACKAGE_VERSION=$input
 
 
 # boards are served via github pages
@@ -121,7 +121,7 @@ archive "adafruit-$PACKAGE_VERSION" hardware/adafruit/avr PACKAGESHA PACKAGESIZE
 cd $REPO_DIR
 
 # fill in board json templatee
-echo $JSON | sed -e "s/PACKAGEVERSION/$PACKAGE_VERSION/" \
-                 -e "s/DOWNLOADURL/$BOARD_DOWNLOAD_URL/" \
-                 -e "s/PACKAGESHA/$PACKAGESHA/" \
-                 -e "s/PACKAGESIZE/$PACKAGESIZE/" > build/package.json
+echo $JSON | sed -e "s/PACKAGEVERSION/$PACKAGE_VERSION/g" \
+                 -e "s/DOWNLOADURL/$BOARD_DOWNLOAD_URL/g" \
+                 -e "s/PACKAGESHA/$PACKAGESHA/g" \
+                 -e "s/PACKAGESIZE/$PACKAGESIZE/g" > build/package.json
