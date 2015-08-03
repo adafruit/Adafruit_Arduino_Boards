@@ -45,3 +45,19 @@ For example the IDE builds Adafruit publishes were built with commands like:
 ./build_windows.sh arduino-1.6.4-windows.zip adafruit-arduino-1.6.4-windows.zip
 
 ./build_macosx.sh arduino-1.6.4-macosx.zip adafruit-arduino-1.6.4-macosx.zip
+
+## Running a Package Build
+
+Run the `build_package.sh` script and enter a new version:
+```
+$ ./build_package.sh 
+VERSION [1.3.0]: 1.3.0
+``` 
+
+The resulting `tar.bz2` archive will then be available in the `build/` folder along with the JSON output needed to add the new version to the package index file in the [adafruit/arduino-board-index](https://github.com/adafruit/arduino-board-index) repo:
+
+```
+├── build
+│   ├── adafruit-1.3.0.tar.bz2
+│   └── package.json
+```
