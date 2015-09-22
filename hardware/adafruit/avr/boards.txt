@@ -11,7 +11,7 @@ flora8.name=Adafruit Flora
 flora8.bootloader.low_fuses=0xff
 flora8.bootloader.high_fuses=0xd8
 flora8.bootloader.extended_fuses=0xcb
-flora8.bootloader.file=arduino:caterina/Caterina-Flora8.hex
+flora8.bootloader.file=caterina/Caterina-Flora8.hex
 flora8.bootloader.unlock_bits=0x3F
 flora8.bootloader.lock_bits=0x2F
 flora8.bootloader.tool=arduino:avrdude
@@ -37,12 +37,12 @@ flora8.pid.0=0x8004
 
 
 ##############################################################
-# Flora Configuration
+# Bluefruit Micro Configuration
 bluefruitmicro.name=Adafruit Bluefruit Micro
 bluefruitmicro.bootloader.low_fuses=0xff
 bluefruitmicro.bootloader.high_fuses=0xd8
 bluefruitmicro.bootloader.extended_fuses=0xcb
-bluefruitmicro.bootloader.file=arduino:caterina/Caterina-Bluefruitmicro.hex
+bluefruitmicro.bootloader.file=caterina/Caterina-Bluefruitmicro.hex
 bluefruitmicro.bootloader.unlock_bits=0x3F
 bluefruitmicro.bootloader.lock_bits=0x2F
 bluefruitmicro.bootloader.tool=arduino:avrdude
@@ -124,7 +124,7 @@ metro.bootloader.high_fuses=0xDE
 metro.bootloader.extended_fuses=0x05
 metro.bootloader.unlock_bits=0x3F
 metro.bootloader.lock_bits=0x0F
-metro.bootloader.file=arduino:optiboot/optiboot_atmega328.hex
+metro.bootloader.file=optiboot/optiboot_atmega328.hex
 metro.build.mcu=atmega328p
 metro.build.f_cpu=16000000L
 metro.build.board=AVR_METRO
@@ -163,7 +163,7 @@ protrinket5ftdi.name=Pro Trinket 5V/16MHz (FTDI)
 protrinket5ftdi.bootloader.low_fuses=0xff
 protrinket5ftdi.bootloader.high_fuses=0xde
 protrinket5ftdi.bootloader.extended_fuses=0x05
-protrinket5ftdi.bootloader.file=arduino:optiboot/optiboot_atmega328.hex
+protrinket5ftdi.bootloader.file=optiboot/optiboot_atmega328.hex
 protrinket5ftdi.bootloader.unlock_bits=0x3F
 protrinket5ftdi.bootloader.lock_bits=0x0F
 protrinket5ftdi.bootloader.tool=arudino:avrdude
@@ -184,7 +184,7 @@ protrinket3ftdi.bootloader.tool=arduino:avrdude
 protrinket3ftdi.bootloader.low_fuses=0xff
 protrinket3ftdi.bootloader.high_fuses=0xde
 protrinket3ftdi.bootloader.extended_fuses=0x05
-protrinket3ftdi.bootloader.file=arduino:optiboot/optiboot_atmega328.hex
+protrinket3ftdi.bootloader.file=optiboot/optiboot_atmega328.hex
 protrinket3ftdi.bootloader.unlock_bits=0x3F
 protrinket3ftdi.bootloader.lock_bits=0x0F
 protrinket3ftdi.build.mcu=atmega328p
