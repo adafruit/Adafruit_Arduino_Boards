@@ -82,6 +82,36 @@ gemma.upload.tool=arduino:avrdude
 gemma.upload.maximum_size=5310
 
 ##############################################################
+# Adafruit Feather 32u4 Configuration
+feather32u4.name=Adafruit Feather 32u4
+feather32u4.bootloader.low_fuses=0xff
+feather32u4.bootloader.high_fuses=0xd8
+feather32u4.bootloader.extended_fuses=0xcb
+feather32u4.bootloader.file=caterina/Caterina-Feather32u4.hex
+feather32u4.bootloader.unlock_bits=0x3F
+feather32u4.bootloader.lock_bits=0x2F
+feather32u4.bootloader.tool=arduino:avrdude
+feather32u4.build.mcu=atmega32u4
+feather32u4.build.f_cpu=8000000L
+feather32u4.build.vid=0x239C
+feather32u4.build.pid=0x800C
+feather32u4.build.core=arduino:arduino
+feather32u4.build.variant=feather32u4
+feather32u4.build.board=AVR_FEATHER32U4
+feather32u4.build.usb_product="Feather 32u4"
+feather32u4.build.usb_manufacturer="Adafruit"
+feather32u4.build.extra_flags={build.usb_flags}
+feather32u4.upload.protocol=avr109
+feather32u4.upload.maximum_size=28672
+feather32u4.upload.speed=57600
+feather32u4.upload.disable_flushing=true
+feather32u4.upload.use_1200bps_touch=true
+feather32u4.upload.wait_for_upload_port=true
+feather32u4.upload.tool=arduino:avrdude
+feather32u4.vid.0=0x239C
+feather32u4.pid.0=0x800C
+
+##############################################################
 # Trinket 3.3V Configuration
 trinket3.name=Adafruit Trinket 8MHz
 trinket3.bootloader.low_fuses=0xF1
