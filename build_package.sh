@@ -58,7 +58,10 @@ read -r -d '' JSON <<'EOF'
          "name":"Adafruit Bluefruit Micro"
       },
       {
-         "name": "Adafruit Feather 32u4"
+         "name":"Adafruit Feather 32u4"
+      },
+      {
+         "name":"Adafruit Metro"
       },
       {
          "name":"Adafruit Pro Trinket 5V/16MHz (USB)"
