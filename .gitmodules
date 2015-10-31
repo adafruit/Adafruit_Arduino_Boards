@@ -1,0 +1,3 @@
+[submodule "hardware/adafruit/sam"]
+	path = hardware/adafruit/sam
+	url = git@github.com:adafruit/ArduinoCore-samd.git
