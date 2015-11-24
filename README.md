@@ -55,16 +55,16 @@ $ git submodule init && git submodule update
 $ ./build_package.sh
 AVR VERSION: 1.4.1
 building adafruit-avr-1.4.1.tar.bz2...
-SAM VERSION: 1.0.0
-building adafruit-sam-1.0.0.tar.bz2...
-``` 
+SAMD VERSION: 1.0.0
+building adafruit-samd-1.0.0.tar.bz2...
+```
 
 The resulting `tar.bz2` archives will then be available in the `build/` folder along with the JSON output needed to add the new versions to the package index file in the [adafruit/arduino-board-index](https://github.com/adafruit/arduino-board-index) repo:
 
 ```
 ├── build
 │   ├── adafruit-avr-1.4.1.tar.bz2
-│   ├── adafruit-sam-1.0.0.tar.bz2
+│   ├── adafruit-samd-1.0.0.tar.bz2
 │   ├── avr_package.json
-│   └── sam_package.json
+│   └── samd_package.json
 ```

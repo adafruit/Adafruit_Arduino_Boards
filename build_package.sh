@@ -30,14 +30,14 @@ BOARD_DOWNLOAD_URL="https:\/\/adafruit.github.io\/arduino-board-index\/boards"
 
 # get package script directory
 REPO_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-read -r -d '' SAMJSON <<'EOF'
+read -r -d '' SAMDJSON <<'EOF'
 {
    "name":"Adafruit SAMD Boards",
-   "architecture":"sam",
+   "architecture":"samd",
    "version":"PACKAGEVERSION",
    "category":"Adafruit",
-   "url":"DOWNLOADURL/adafruit-sam-PACKAGEVERSION.tar.bz2",
-   "archiveFileName":"adafruit-sam-PACKAGEVERSION.tar.bz2",
+   "url":"DOWNLOADURL/adafruit-samd-PACKAGEVERSION.tar.bz2",
+   "archiveFileName":"adafruit-samd-PACKAGEVERSION.tar.bz2",
    "checksum":"SHA-256:PACKAGESHA",
    "size":"PACKAGESIZE",
    "help":{
@@ -48,7 +48,28 @@ read -r -d '' SAMJSON <<'EOF'
          "name":"Adafruit Feather M0"
       }
    ],
-   "toolsDependencies":[]
+   "toolsDependencies": [
+     {
+       "packager": "arduino",
+       "name": "arm-none-eabi-gcc",
+       "version": "4.8.3-2014q1"
+     },
+     {
+       "packager": "arduino",
+       "name": "bossac",
+       "version": "1.6.1-arduino"
+     },
+     {
+       "packager": "arduino",
+       "name": "openocd",
+       "version": "0.9.0-arduino"
+     },
+     {
+       "packager": "arduino",
+       "name": "CMSIS",
+       "version": "4.0.0-atmel"
+     }
+   ]
 }
 EOF
 
@@ -150,22 +171,22 @@ echo $AVRJSON | sed -e "s/PACKAGEVERSION/$PACKAGE_VERSION/g" \
                  -e "s/PACKAGESHA/$PACKAGESHA/g" \
                  -e "s/PACKAGESIZE/$PACKAGESIZE/g" > build/avr_package.json
 
-read -p "SAM VERSION: " input
+read -p "SAMD VERSION: " input
 PACKAGE_VERSION=$input
 
 cd $REPO_DIR
 
 #update platform version
-sed -i .bak -e "s/^version=.*/version=$PACKAGE_VERSION/" hardware/adafruit/sam/platform.txt
-sed -i .bak -e "s/^name=.*/name=Adafruit SAMD Boards/" hardware/adafruit/sam/platform.txt
+sed -i .bak -e "s/^version=.*/version=$PACKAGE_VERSION/" hardware/adafruit/samd/platform.txt
+sed -i .bak -e "s/^name=.*/name=Adafruit SAMD Boards/" hardware/adafruit/samd/platform.txt
 
 # create archives and get sha & size
-archive "adafruit-sam-$PACKAGE_VERSION" hardware/adafruit/sam PACKAGESHA PACKAGESIZE
+archive "adafruit-samd-$PACKAGE_VERSION" hardware/adafruit/samd PACKAGESHA PACKAGESIZE
 
 cd $REPO_DIR
 
 # fill in board json templatee
-echo $SAMJSON | sed -e "s/PACKAGEVERSION/$PACKAGE_VERSION/g" \
+echo $SAMDJSON | sed -e "s/PACKAGEVERSION/$PACKAGE_VERSION/g" \
                  -e "s/DOWNLOADURL/$BOARD_DOWNLOAD_URL/g" \
                  -e "s/PACKAGESHA/$PACKAGESHA/g" \
-                 -e "s/PACKAGESIZE/$PACKAGESIZE/g" > build/sam_package.json
+                 -e "s/PACKAGESIZE/$PACKAGESIZE/g" > build/samd_package.json
