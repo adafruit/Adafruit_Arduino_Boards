@@ -50,14 +50,21 @@ For example the IDE builds Adafruit publishes were built with commands like:
 
 Run the `build_package.sh` script and enter a new version:
 ```
-$ ./build_package.sh 
-VERSION [1.3.0]: 1.3.0
+$ git clone git@github.com:adafruit/Adafruit_Arduino_Boards.git && cd Adafruit_Arduino_Boards
+$ git submodule init && git submodule update
+$ ./build_package.sh
+AVR VERSION: 1.4.1
+building adafruit-avr-1.4.1.tar.bz2...
+SAM VERSION: 1.0.0
+building adafruit-sam-1.0.0.tar.bz2...
 ``` 
 
-The resulting `tar.bz2` archive will then be available in the `build/` folder along with the JSON output needed to add the new version to the package index file in the [adafruit/arduino-board-index](https://github.com/adafruit/arduino-board-index) repo:
+The resulting `tar.bz2` archives will then be available in the `build/` folder along with the JSON output needed to add the new versions to the package index file in the [adafruit/arduino-board-index](https://github.com/adafruit/arduino-board-index) repo:
 
 ```
 ├── build
-│   ├── adafruit-1.3.0.tar.bz2
-│   └── package.json
+│   ├── adafruit-avr-1.4.1.tar.bz2
+│   ├── adafruit-sam-1.0.0.tar.bz2
+│   ├── avr_package.json
+│   └── sam_package.json
 ```
