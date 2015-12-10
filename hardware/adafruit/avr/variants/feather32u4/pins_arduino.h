@@ -67,6 +67,9 @@ static const uint8_t A11 = 29;	// D12
 extern const uint8_t PROGMEM analog_pin_to_channel_PGM[];
 #define analogPinToChannel(P)  ( pgm_read_byte( analog_pin_to_channel_PGM + (P) ) )
 
+#define NUM_DIGITAL_PINS   24
+#define NUM_ANALOG_INPUTS  12
+
 #ifdef ARDUINO_MAIN
 
 // On the Arduino board, digital pins are also used
