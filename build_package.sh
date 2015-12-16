@@ -30,6 +30,75 @@ BOARD_DOWNLOAD_URL="https:\/\/adafruit.github.io\/arduino-board-index\/boards"
 
 # get package script directory
 REPO_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+read -r -d '' TEEJSON <<'EOF'
+{
+   "name":"Adafruit TeeOnArdu",
+   "architecture":"avr",
+   "version":"PACKAGEVERSION",
+   "category":"Adafruit",
+   "url":"DOWNLOADURL/adafruit-teeonardu-PACKAGEVERSION.tar.bz2",
+   "archiveFileName":"adafruit-teeonardu-PACKAGEVERSION.tar.bz2",
+   "checksum":"SHA-256:PACKAGESHA",
+   "size":"PACKAGESIZE",
+   "help":{
+      "online":"https://forums.adafruit.com"
+   },
+   "boards":[
+      {
+        "name":"TeeOnArdu (Leo on TeensyCore)"
+      },
+      {
+        "name":"Flora (TeensyCore)"
+      }
+   ],
+   "toolsDependencies": []
+}
+EOF
+
+read -r -d '' SAMDJSON <<'EOF'
+{
+   "name":"Adafruit SAMD Boards",
+   "architecture":"samd",
+   "version":"PACKAGEVERSION",
+   "category":"Adafruit",
+   "url":"DOWNLOADURL/adafruit-samd-PACKAGEVERSION.tar.bz2",
+   "archiveFileName":"adafruit-samd-PACKAGEVERSION.tar.bz2",
+   "checksum":"SHA-256:PACKAGESHA",
+   "size":"PACKAGESIZE",
+   "help":{
+      "online":"https://forums.adafruit.com"
+   },
+   "boards":[
+      {
+         "name":"Adafruit Feather M0"
+      }
+   ],
+   "toolsDependencies": [
+     {
+       "packager": "arduino",
+       "name": "arm-none-eabi-gcc",
+       "version": "4.8.3-2014q1"
+     },
+     {
+       "packager": "arduino",
+       "name": "bossac",
+       "version": "1.6.1-arduino"
+     },
+     {
+       "packager": "arduino",
+       "name": "openocd",
+       "version": "0.9.0-arduino"
+     },
+     {
+       "packager": "arduino",
+       "name": "CMSIS",
+       "version": "4.0.0-atmel"
+     }
+   ]
+}
+EOF
+
 read -r -d '' SAMDJSON <<'EOF'
 {
    "name":"Adafruit SAMD Boards",
@@ -190,3 +259,22 @@ echo $SAMDJSON | sed -e "s/PACKAGEVERSION/$PACKAGE_VERSION/g" \
                  -e "s/DOWNLOADURL/$BOARD_DOWNLOAD_URL/g" \
                  -e "s/PACKAGESHA/$PACKAGESHA/g" \
                  -e "s/PACKAGESIZE/$PACKAGESIZE/g" > build/samd_package.json
+
+read -p "TeeOnArdu VERSION: " input
+PACKAGE_VERSION=$input
+
+cd $REPO_DIR
+
+#update platform version
+sed -i .bak -e "s/^version=.*/version=$PACKAGE_VERSION/" hardware/teeonardu/avr/platform.txt
+
+# create archives and get sha & size
+archive "adafruit-teeonardu-$PACKAGE_VERSION" hardware/teeonardu/avr PACKAGESHA PACKAGESIZE
+
+cd $REPO_DIR
+
+# fill in board json templatee
+echo $TEEJSON | sed -e "s/PACKAGEVERSION/$PACKAGE_VERSION/g" \
+                 -e "s/DOWNLOADURL/$BOARD_DOWNLOAD_URL/g" \
+                 -e "s/PACKAGESHA/$PACKAGESHA/g" \
+                 -e "s/PACKAGESIZE/$PACKAGESIZE/g" > build/tee_package.json

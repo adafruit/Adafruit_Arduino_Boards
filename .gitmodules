@@ -2,6 +2,6 @@
 	path = hardware/adafruit/samd
 	url = git@github.com:adafruit/ArduinoCore-samd.git
 [submodule "hardware/teeonardu"]
-	path = hardware/teeonardu
+	path = hardware/teeonardu/avr
 	url = https://github.com/adafruit/TeeOnArdu.git
 	branch = 1.6.x
