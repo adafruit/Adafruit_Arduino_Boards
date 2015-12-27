@@ -93,7 +93,7 @@ feather32u4.bootloader.lock_bits=0x2F
 feather32u4.bootloader.tool=arduino:avrdude
 feather32u4.build.mcu=atmega32u4
 feather32u4.build.f_cpu=8000000L
-feather32u4.build.vid=0x239C
+feather32u4.build.vid=0x239A
 feather32u4.build.pid=0x800C
 feather32u4.build.core=arduino:arduino
 feather32u4.build.variant=feather32u4
@@ -108,7 +108,7 @@ feather32u4.upload.disable_flushing=true
 feather32u4.upload.use_1200bps_touch=true
 feather32u4.upload.wait_for_upload_port=true
 feather32u4.upload.tool=arduino:avrdude
-feather32u4.vid.0=0x239C
+feather32u4.vid.0=0x239A
 feather32u4.pid.0=0x800C
 
 ##############################################################
