@@ -34,6 +34,9 @@
 #define RXLED1			0
 #define TX_RX_LED_INIT	0
 
+#define NUM_DIGITAL_PINS   24
+#define NUM_ANALOG_INPUTS  12
+
 static const uint8_t SDA = 2;
 static const uint8_t SCL = 3;
 
