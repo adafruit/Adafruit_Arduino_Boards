@@ -112,6 +112,36 @@ feather32u4.vid.0=0x239A
 feather32u4.pid.0=0x800C
 
 ##############################################################
+# Adafruit 32u4 Breakout Configuration
+adafruit32u4.name=Adafruit 32u4 Breakout
+adafruit32u4.bootloader.low_fuses=0xff
+adafruit32u4.bootloader.high_fuses=0xd8
+adafruit32u4.bootloader.extended_fuses=0xcb
+adafruit32u4.bootloader.file=caterina/Caterina-Atmega32u4.hex
+adafruit32u4.bootloader.unlock_bits=0x3F
+adafruit32u4.bootloader.lock_bits=0x2F
+adafruit32u4.bootloader.tool=arduino:avrdude
+adafruit32u4.build.mcu=atmega32u4
+adafruit32u4.build.f_cpu=16000000L
+adafruit32u4.build.vid=0x239A
+adafruit32u4.build.pid=0x8001
+adafruit32u4.build.core=arduino:arduino
+adafruit32u4.build.variant=adafruit32u4
+adafruit32u4.build.board=AVR_ADAFRUIT32U4
+adafruit32u4.build.usb_product="32u4 Breakout"
+adafruit32u4.build.usb_manufacturer="Adafruit"
+adafruit32u4.build.extra_flags={build.usb_flags}
+adafruit32u4.upload.protocol=avr109
+adafruit32u4.upload.maximum_size=28672
+adafruit32u4.upload.speed=57600
+adafruit32u4.upload.disable_flushing=true
+adafruit32u4.upload.use_1200bps_touch=true
+adafruit32u4.upload.wait_for_upload_port=true
+adafruit32u4.upload.tool=arduino:avrdude
+adafruit32u4.vid.0=0x239A
+adafruit32u4.pid.0=0x8001
+
+##############################################################
 # Trinket 3.3V Configuration
 trinket3.name=Adafruit Trinket 8MHz
 trinket3.bootloader.low_fuses=0xF1
