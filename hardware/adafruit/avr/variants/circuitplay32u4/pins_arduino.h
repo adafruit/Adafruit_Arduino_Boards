@@ -69,6 +69,8 @@ extern const uint8_t PROGMEM analog_pin_to_channel_PGM[];
 
 #define NUM_DIGITAL_PINS   31
 #define NUM_ANALOG_INPUTS  12
+#define digitalPinHasPWM(p) ((p) == 3 || (p) == 5 || (p) == 6 || (p) == 9 || (p) == 10 || (p) == 11 || (p) == 13)
+#define digitalPinToInterrupt(p) ((p) == 0 ? 2 : ((p) == 1 ? 3 : ((p) == 2 ? 1 : ((p) == 3 ? 0 : ((p) == 7 ? 4 : NOT_AN_INTERRUPT)))))
 
 #ifdef ARDUINO_MAIN
 
