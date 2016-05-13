@@ -27,15 +27,83 @@
 
 #include <avr/pgmspace.h>
 
+// Workaround for wrong definitions in "iom32u4.h".
+// This should be fixed in the AVR toolchain.
+#undef UHCON
+#undef UHINT
+#undef UHIEN
+#undef UHADDR
+#undef UHFNUM
+#undef UHFNUML
+#undef UHFNUMH
+#undef UHFLEN
+#undef UPINRQX
+#undef UPINTX
+#undef UPNUM
+#undef UPRST
+#undef UPCONX
+#undef UPCFG0X
+#undef UPCFG1X
+#undef UPSTAX
+#undef UPCFG2X
+#undef UPIENX
+#undef UPDATX
+#undef TCCR2A
+#undef WGM20
+#undef WGM21
+#undef COM2B0
+#undef COM2B1
+#undef COM2A0
+#undef COM2A1
+#undef TCCR2B
+#undef CS20
+#undef CS21
+#undef CS22
+#undef WGM22
+#undef FOC2B
+#undef FOC2A
+#undef TCNT2
+#undef TCNT2_0
+#undef TCNT2_1
+#undef TCNT2_2
+#undef TCNT2_3
+#undef TCNT2_4
+#undef TCNT2_5
+#undef TCNT2_6
+#undef TCNT2_7
+#undef OCR2A
+#undef OCR2_0
+#undef OCR2_1
+#undef OCR2_2
+#undef OCR2_3
+#undef OCR2_4
+#undef OCR2_5
+#undef OCR2_6
+#undef OCR2_7
+#undef OCR2B
+#undef OCR2_0
+#undef OCR2_1
+#undef OCR2_2
+#undef OCR2_3
+#undef OCR2_4
+#undef OCR2_5
+#undef OCR2_6
+#undef OCR2_7
 
+#define NUM_DIGITAL_PINS  31
+#define NUM_ANALOG_INPUTS 12
+
+#define TX_RX_LED_INIT	DDRD |= (1<<5), DDRB |= (1<<0)
 #define TXLED0			PORTD &= ~(1<<5)
 #define TXLED1			PORTD |= (1<<5)
 #define RXLED0			PORTB &= ~(1<<0)
 #define RXLED1			PORTB |= (1<<0)
-#define TX_RX_LED_INIT	DDRD |= (1<<5), DDRB |= (1<<0), TXLED0, RXLED0
 
 static const uint8_t SDA = 2;
 static const uint8_t SCL = 3;
+#define LED_BUILTIN 13
+#define LED_BUILTIN_RX 17
+#define LED_BUILTIN_TX 30
 
 // Map SPI port to 'new' pins D14..D17
 static const uint8_t SS   = 17;
@@ -66,7 +134,9 @@ static const uint8_t A11 = 29;	// D12
 //	__AVR_ATmega32U4__ has an unusual mapping of pins to channels
 extern const uint8_t PROGMEM analog_pin_to_channel_PGM[];
 #define analogPinToChannel(P)  ( pgm_read_byte( analog_pin_to_channel_PGM + (P) ) )
+
 #define digitalPinHasPWM(p) ((p) == 3 || (p) == 5 || (p) == 6 || (p) == 9 || (p) == 10 || (p) == 11 || (p) == 13)
+
 #define digitalPinToInterrupt(p) ((p) == 0 ? 2 : ((p) == 1 ? 3 : ((p) == 2 ? 1 : ((p) == 3 ? 0 : ((p) == 7 ? 4 : NOT_AN_INTERRUPT)))))
 
 #ifdef ARDUINO_MAIN
@@ -107,8 +177,8 @@ extern const uint8_t PROGMEM analog_pin_to_channel_PGM[];
 // MOSI		D16		PB2					MOSI,PCINT2
 // SS		D17		PB0					RXLED,SS/PCINT0
 //
-// TXLED			PD5
-// RXLED		    PB0
+// TXLED	D30		PD5					XCK1
+// RXLED	D17	    PB0
 // HWB				PE2					HWB
 
 // these arrays map port names (e.g. port B) to the
@@ -144,7 +214,7 @@ const uint16_t PROGMEM port_to_input_PGM[] = {
 	(uint16_t) &PINF,
 };
 
-const uint8_t PROGMEM digital_pin_to_port_PGM[30] = {
+const uint8_t PROGMEM digital_pin_to_port_PGM[] = {
 	PD, // D0 - PD2
 	PD,	// D1 - PD3
 	PD, // D2 - PD1
@@ -153,35 +223,36 @@ const uint8_t PROGMEM digital_pin_to_port_PGM[30] = {
 	PC, // D5 - PC6
 	PD, // D6 - PD7
 	PE, // D7 - PE6
-
+	
 	PB, // D8 - PB4
 	PB,	// D9 - PB5
 	PB, // D10 - PB6
 	PB,	// D11 - PB7
 	PD, // D12 - PD6
 	PC, // D13 - PC7
-
+	
 	PB,	// D14 - MISO - PB3
 	PB,	// D15 - SCK - PB1
 	PB,	// D16 - MOSI - PB2
 	PB,	// D17 - SS - PB0
-
+	
 	PF,	// D18 - A0 - PF7
 	PF, // D19 - A1 - PF6
 	PF, // D20 - A2 - PF5
 	PF, // D21 - A3 - PF4
 	PF, // D22 - A4 - PF1
 	PF, // D23 - A5 - PF0
-
+	
 	PD, // D24 / D4 - A6 - PD4
 	PD, // D25 / D6 - A7 - PD7
 	PB, // D26 / D8 - A8 - PB4
 	PB, // D27 / D9 - A9 - PB5
 	PB, // D28 / D10 - A10 - PB6
 	PD, // D29 / D12 - A11 - PD6
+	PD, // D30 / TX Led - PD5
 };
 
-const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[30] = {
+const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {
 	_BV(2), // D0 - PD2
 	_BV(3),	// D1 - PD3
 	_BV(1), // D2 - PD1
@@ -190,35 +261,36 @@ const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[30] = {
 	_BV(6), // D5 - PC6
 	_BV(7), // D6 - PD7
 	_BV(6), // D7 - PE6
-
+	
 	_BV(4), // D8 - PB4
 	_BV(5),	// D9 - PB5
 	_BV(6), // D10 - PB6
 	_BV(7),	// D11 - PB7
 	_BV(6), // D12 - PD6
 	_BV(7), // D13 - PC7
-
+	
 	_BV(3),	// D14 - MISO - PB3
 	_BV(1),	// D15 - SCK - PB1
 	_BV(2),	// D16 - MOSI - PB2
 	_BV(0),	// D17 - SS - PB0
-
+	
 	_BV(7),	// D18 - A0 - PF7
 	_BV(6), // D19 - A1 - PF6
 	_BV(5), // D20 - A2 - PF5
 	_BV(4), // D21 - A3 - PF4
 	_BV(1), // D22 - A4 - PF1
 	_BV(0), // D23 - A5 - PF0
-
+	
 	_BV(4), // D24 / D4 - A6 - PD4
 	_BV(7), // D25 / D6 - A7 - PD7
 	_BV(4), // D26 / D8 - A8 - PB4
 	_BV(5), // D27 / D9 - A9 - PB5
 	_BV(6), // D28 / D10 - A10 - PB6
 	_BV(6), // D29 / D12 - A11 - PD6
+	_BV(5), // D30 / TX Led - PD5
 };
 
-const uint8_t PROGMEM digital_pin_to_timer_PGM[16] = {
+const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
 	NOT_ON_TIMER,
 	NOT_ON_TIMER,
 	NOT_ON_TIMER,
@@ -238,9 +310,25 @@ const uint8_t PROGMEM digital_pin_to_timer_PGM[16] = {
 
 	NOT_ON_TIMER,
 	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
 };
 
-const uint8_t PROGMEM analog_pin_to_channel_PGM[12] = {
+const uint8_t PROGMEM analog_pin_to_channel_PGM[] = {
 	7,	// A0				PF7					ADC7
 	6,	// A1				PF6					ADC6
 	5,	// A2				PF5					ADC5
@@ -256,4 +344,46 @@ const uint8_t PROGMEM analog_pin_to_channel_PGM[12] = {
 };
 
 #endif /* ARDUINO_MAIN */
+
+// These serial port names are intended to allow libraries and architecture-neutral
+// sketches to automatically default to the correct port name for a particular type
+// of use.  For example, a GPS module would normally connect to SERIAL_PORT_HARDWARE_OPEN,
+// the first hardware serial port whose RX/TX pins are not dedicated to another use.
+//
+// SERIAL_PORT_MONITOR        Port which normally prints to the Arduino Serial Monitor
+//
+// SERIAL_PORT_USBVIRTUAL     Port which is USB virtual serial
+//
+// SERIAL_PORT_LINUXBRIDGE    Port which connects to a Linux system via Bridge library
+//
+// SERIAL_PORT_HARDWARE       Hardware serial port, physical RX & TX pins.
+//
+// SERIAL_PORT_HARDWARE_OPEN  Hardware serial ports which are open for use.  Their RX & TX
+//                            pins are NOT connected to anything by default.
+#define SERIAL_PORT_MONITOR        Serial
+#define SERIAL_PORT_USBVIRTUAL     Serial
+#define SERIAL_PORT_HARDWARE       Serial1
+#define SERIAL_PORT_HARDWARE_OPEN  Serial1
+
+// Alias SerialUSB to Serial
+#define SerialUSB SERIAL_PORT_USBVIRTUAL
+
+// Bootloader related fields
+// Old Caterina bootloader places the MAGIC key into unsafe RAM locations (it can be rewritten
+// by the running sketch before to actual reboot).
+// Newer bootloaders, recognizable by the LUFA "signature" at the end of the flash, can handle both
+// the usafe and the safe location. Check once (in USBCore.cpp) if the bootloader in new, then set the global
+// _updatedLUFAbootloader variable to true/false and place the magic key consequently
+#ifndef MAGIC_KEY
+#define MAGIC_KEY 0x7777
+#endif
+
+#ifndef MAGIC_KEY_POS
+#define MAGIC_KEY_POS 0x0800
+#endif
+
+#ifndef NEW_LUFA_SIGNATURE
+#define NEW_LUFA_SIGNATURE 0xDCFB
+#endif
+
 #endif /* Pins_Arduino_h */
