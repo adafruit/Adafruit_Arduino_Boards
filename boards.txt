@@ -288,3 +288,63 @@ circuitplay32u4cat.upload.wait_for_upload_port=true
 circuitplay32u4cat.upload.tool=arduino:avrdude
 circuitplay32u4cat.vid.0=0x239A
 circuitplay32u4cat.pid.0=0x8011
+
+##############################################################
+# Adafruit 32u4 ItsyBitsy 5V @ 16MHz
+itsybitsy32u4_5V.name=Adafruit ItsyBitsy 32u4 5V 16MHz
+itsybitsy32u4_5V.bootloader.low_fuses=0xff
+itsybitsy32u4_5V.bootloader.high_fuses=0xd8
+itsybitsy32u4_5V.bootloader.extended_fuses=0xcb
+itsybitsy32u4_5V.bootloader.file=caterina/Caterina-Atmega32u4.hex
+itsybitsy32u4_5V.bootloader.unlock_bits=0x3F
+itsybitsy32u4_5V.bootloader.lock_bits=0x2F
+itsybitsy32u4_5V.bootloader.tool=arduino:avrdude
+itsybitsy32u4_5V.build.mcu=atmega32u4
+itsybitsy32u4_5V.build.f_cpu=16000000L
+itsybitsy32u4_5V.build.vid=0x239A
+itsybitsy32u4_5V.build.pid=0x800E
+itsybitsy32u4_5V.build.core=arduino:arduino
+itsybitsy32u4_5V.build.variant=itsybitsy32u4
+itsybitsy32u4_5V.build.board=AVR_ITSYBITSY32U4_5V
+itsybitsy32u4_5V.build.usb_product="ItsyBitsy 32u4 5V 16MHz"
+itsybitsy32u4_5V.build.usb_manufacturer="Adafruit"
+itsybitsy32u4_5V.build.extra_flags={build.usb_flags}
+itsybitsy32u4_5V.upload.protocol=avr109
+itsybitsy32u4_5V.upload.maximum_size=28672
+itsybitsy32u4_5V.upload.speed=57600
+itsybitsy32u4_5V.upload.disable_flushing=true
+itsybitsy32u4_5V.upload.use_1200bps_touch=true
+itsybitsy32u4_5V.upload.wait_for_upload_port=true
+itsybitsy32u4_5V.upload.tool=arduino:avrdude
+itsybitsy32u4_5V.vid.0=0x239A
+itsybitsy32u4_5V.pid.0=0x000E
+
+##############################################################
+# Adafruit 32u4 ItsyBitsy 3V @ 8MHz
+itsybitsy32u4_3V.name=Adafruit ItsyBitsy 32u4 3V 8MHz
+itsybitsy32u4_3V.bootloader.low_fuses=0xff
+itsybitsy32u4_3V.bootloader.high_fuses=0xd8
+itsybitsy32u4_3V.bootloader.extended_fuses=0xcb
+itsybitsy32u4_3V.bootloader.file=caterina/Caterina-Atmega32u4.hex
+itsybitsy32u4_3V.bootloader.unlock_bits=0x3F
+itsybitsy32u4_3V.bootloader.lock_bits=0x2F
+itsybitsy32u4_3V.bootloader.tool=arduino:avrdude
+itsybitsy32u4_3V.build.mcu=atmega32u4
+itsybitsy32u4_3V.build.f_cpu=8000000L
+itsybitsy32u4_3V.build.vid=0x239A
+itsybitsy32u4_3V.build.pid=0x800D
+itsybitsy32u4_3V.build.core=arduino:arduino
+itsybitsy32u4_3V.build.variant=itsybitsy32u4
+itsybitsy32u4_3V.build.board=AVR_ITSYBITSY32U4_3V
+itsybitsy32u4_3V.build.usb_product="ItsyBitsy 32u4 3V 8MHz"
+itsybitsy32u4_3V.build.usb_manufacturer="Adafruit"
+itsybitsy32u4_3V.build.extra_flags={build.usb_flags}
+itsybitsy32u4_3V.upload.protocol=avr109
+itsybitsy32u4_3V.upload.maximum_size=28672
+itsybitsy32u4_3V.upload.speed=57600
+itsybitsy32u4_3V.upload.disable_flushing=true
+itsybitsy32u4_3V.upload.use_1200bps_touch=true
+itsybitsy32u4_3V.upload.wait_for_upload_port=true
+itsybitsy32u4_3V.upload.tool=arduino:avrdude
+itsybitsy32u4_3V.vid.0=0x239A
+itsybitsy32u4_3V.pid.0=0x000D
