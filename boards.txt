@@ -37,51 +37,6 @@ flora8.pid.0=0x8004
 
 
 ##############################################################
-# Bluefruit Micro Configuration
-bluefruitmicro.name=Adafruit Bluefruit Micro
-bluefruitmicro.bootloader.low_fuses=0xff
-bluefruitmicro.bootloader.high_fuses=0xd8
-bluefruitmicro.bootloader.extended_fuses=0xcb
-bluefruitmicro.bootloader.file=caterina/Caterina-BluefruitMicro8.hex
-bluefruitmicro.bootloader.unlock_bits=0x3F
-bluefruitmicro.bootloader.lock_bits=0x2F
-bluefruitmicro.bootloader.tool=arduino:avrdude
-bluefruitmicro.build.mcu=atmega32u4
-bluefruitmicro.build.f_cpu=8000000L
-bluefruitmicro.build.vid=0x239A
-bluefruitmicro.build.pid=0x800A
-bluefruitmicro.build.core=arduino:arduino
-bluefruitmicro.build.variant=bluefruitmicro
-bluefruitmicro.build.board=AVR_BLUEFRUITMICRO
-bluefruitmicro.build.usb_product="Bluefruit Micro"
-bluefruitmicro.build.usb_manufacturer="Adafruit"
-bluefruitmicro.build.extra_flags={build.usb_flags}
-bluefruitmicro.upload.protocol=avr109
-bluefruitmicro.upload.maximum_size=28672
-bluefruitmicro.upload.speed=57600
-bluefruitmicro.upload.disable_flushing=true
-bluefruitmicro.upload.use_1200bps_touch=true
-bluefruitmicro.upload.wait_for_upload_port=true
-bluefruitmicro.upload.tool=arduino:avrdude
-bluefruitmicro.vid.0=0x239A
-bluefruitmicro.pid.0=0x800A
-
-##############################################################
-# Gemma Configuration
-gemma.name=Adafruit Gemma 8MHz
-gemma.bootloader.low_fuses=0xF1
-gemma.bootloader.high_fuses=0xD5
-gemma.bootloader.extended_fuses=0xFE
-gemma.bootloader.tool=arduino:avrdude
-gemma.build.mcu=attiny85
-gemma.build.f_cpu=8000000L
-gemma.build.core=arduino:arduino
-gemma.build.variant=tiny8
-gemma.build.board=AVR_GEMMA
-gemma.upload.tool=arduino:avrdude
-gemma.upload.maximum_size=5310
-
-##############################################################
 # Adafruit Feather 32u4 Configuration
 feather32u4.name=Adafruit Feather 32u4
 feather32u4.bootloader.low_fuses=0xff
@@ -111,9 +66,46 @@ feather32u4.upload.tool=arduino:avrdude
 feather32u4.vid.0=0x239A
 feather32u4.pid.0=0x800C
 
+
+##############################################################
+# Adafruit Feather 328P Configuration
+feather328p.name=Adafruit Feather 328P
+feather328p.upload.tool=arduino:avrdude
+feather328p.upload.protocol=arduino
+feather328p.upload.maximum_size=32256
+feather328p.upload.maximum_data_size=2048
+feather328p.upload.speed=57600
+feather328p.bootloader.tool=arduino:avrdude
+feather328p.bootloader.low_fuses=0xFF
+feather328p.bootloader.high_fuses=0xDE
+feather328p.bootloader.extended_fuses=0x05
+feather328p.bootloader.unlock_bits=0x3F
+feather328p.bootloader.lock_bits=0x0F
+feather328p.bootloader.file=optiboot/optiboot_atmega328.hex
+feather328p.build.mcu=atmega328p
+feather328p.build.f_cpu=8000000L
+feather328p.build.core=arduino:arduino
+feather328p.build.variant=arduino:standard
+feather328p.build.board=AVR_FEATHER328P
+
+##############################################################
+# Gemma Configuration
+gemma.name=Adafruit Gemma (ATtiny85 @ 8MHz)
+gemma.bootloader.low_fuses=0xF1
+gemma.bootloader.high_fuses=0xD5
+gemma.bootloader.extended_fuses=0xFE
+gemma.bootloader.tool=arduino:avrdude
+gemma.build.mcu=attiny85
+gemma.build.f_cpu=8000000L
+gemma.build.core=arduino:arduino
+gemma.build.variant=tiny8
+gemma.build.board=AVR_GEMMA
+gemma.upload.tool=arduino:avrdude
+gemma.upload.maximum_size=5310
+
 ##############################################################
 # Trinket 3.3V Configuration
-trinket3.name=Adafruit Trinket 8MHz
+trinket3.name=Adafruit Trinket (ATtiny85 @ 8MHz)
 trinket3.bootloader.low_fuses=0xF1
 trinket3.bootloader.high_fuses=0xD5
 trinket3.bootloader.extended_fuses=0xFE
@@ -128,7 +120,7 @@ trinket3.upload.maximum_size=5310
 
 ##############################################################
 # Trinket 5V Configuration
-trinket5.name=Adafruit Trinket 16MHz
+trinket5.name=Adafruit Trinket (ATtiny85 @ 16MHz)
 trinket5.bootloader.low_fuses=0xF1
 trinket5.bootloader.high_fuses=0xD5
 trinket5.bootloader.extended_fuses=0xFE
@@ -228,40 +220,10 @@ protrinket3ftdi.upload.maximum_size=28672
 protrinket3ftdi.upload.speed=115200
 
 
-##############################################################
-# Adafruit 32u4 Breakout Configuration
-adafruit32u4.name=Adafruit 32u4 Breakout
-adafruit32u4.bootloader.low_fuses=0xff
-adafruit32u4.bootloader.high_fuses=0xd8
-adafruit32u4.bootloader.extended_fuses=0xcb
-adafruit32u4.bootloader.file=caterina/Caterina-Atmega32u4.hex
-adafruit32u4.bootloader.unlock_bits=0x3F
-adafruit32u4.bootloader.lock_bits=0x2F
-adafruit32u4.bootloader.tool=arduino:avrdude
-adafruit32u4.build.mcu=atmega32u4
-adafruit32u4.build.f_cpu=16000000L
-adafruit32u4.build.vid=0x239A
-adafruit32u4.build.pid=0x8001
-adafruit32u4.build.core=arduino:arduino
-adafruit32u4.build.variant=adafruit32u4
-adafruit32u4.build.board=AVR_ADAFRUIT32U4
-adafruit32u4.build.usb_product="32u4 Breakout"
-adafruit32u4.build.usb_manufacturer="Adafruit"
-adafruit32u4.build.extra_flags={build.usb_flags}
-adafruit32u4.upload.protocol=avr109
-adafruit32u4.upload.maximum_size=28672
-adafruit32u4.upload.speed=57600
-adafruit32u4.upload.disable_flushing=true
-adafruit32u4.upload.use_1200bps_touch=true
-adafruit32u4.upload.wait_for_upload_port=true
-adafruit32u4.upload.tool=arduino:avrdude
-adafruit32u4.vid.0=0x239A
-adafruit32u4.pid.0=0x8001
-
 
 ##############################################################
 # Adafruit Circuit Playground 32u4 w/Caterina Configuration
-circuitplay32u4cat.name=Adafruit Circuit Playground
+circuitplay32u4cat.name=Adafruit Circuit Playground Classic
 circuitplay32u4cat.bootloader.low_fuses=0xff
 circuitplay32u4cat.bootloader.high_fuses=0xd8
 circuitplay32u4cat.bootloader.extended_fuses=0xcb
@@ -348,3 +310,66 @@ itsybitsy32u4_3V.upload.wait_for_upload_port=true
 itsybitsy32u4_3V.upload.tool=arduino:avrdude
 itsybitsy32u4_3V.vid.0=0x239A
 itsybitsy32u4_3V.pid.0=0x000D
+
+
+
+##############################################################
+# Bluefruit Micro Configuration
+bluefruitmicro.name=Adafruit Bluefruit Micro
+bluefruitmicro.bootloader.low_fuses=0xff
+bluefruitmicro.bootloader.high_fuses=0xd8
+bluefruitmicro.bootloader.extended_fuses=0xcb
+bluefruitmicro.bootloader.file=caterina/Caterina-BluefruitMicro8.hex
+bluefruitmicro.bootloader.unlock_bits=0x3F
+bluefruitmicro.bootloader.lock_bits=0x2F
+bluefruitmicro.bootloader.tool=arduino:avrdude
+bluefruitmicro.build.mcu=atmega32u4
+bluefruitmicro.build.f_cpu=8000000L
+bluefruitmicro.build.vid=0x239A
+bluefruitmicro.build.pid=0x800A
+bluefruitmicro.build.core=arduino:arduino
+bluefruitmicro.build.variant=bluefruitmicro
+bluefruitmicro.build.board=AVR_BLUEFRUITMICRO
+bluefruitmicro.build.usb_product="Bluefruit Micro"
+bluefruitmicro.build.usb_manufacturer="Adafruit"
+bluefruitmicro.build.extra_flags={build.usb_flags}
+bluefruitmicro.upload.protocol=avr109
+bluefruitmicro.upload.maximum_size=28672
+bluefruitmicro.upload.speed=57600
+bluefruitmicro.upload.disable_flushing=true
+bluefruitmicro.upload.use_1200bps_touch=true
+bluefruitmicro.upload.wait_for_upload_port=true
+bluefruitmicro.upload.tool=arduino:avrdude
+bluefruitmicro.vid.0=0x239A
+bluefruitmicro.pid.0=0x800A
+
+
+##############################################################
+# Adafruit 32u4 Breakout Configuration
+adafruit32u4.name=Adafruit 32u4 Breakout
+adafruit32u4.bootloader.low_fuses=0xff
+adafruit32u4.bootloader.high_fuses=0xd8
+adafruit32u4.bootloader.extended_fuses=0xcb
+adafruit32u4.bootloader.file=caterina/Caterina-Atmega32u4.hex
+adafruit32u4.bootloader.unlock_bits=0x3F
+adafruit32u4.bootloader.lock_bits=0x2F
+adafruit32u4.bootloader.tool=arduino:avrdude
+adafruit32u4.build.mcu=atmega32u4
+adafruit32u4.build.f_cpu=16000000L
+adafruit32u4.build.vid=0x239A
+adafruit32u4.build.pid=0x8001
+adafruit32u4.build.core=arduino:arduino
+adafruit32u4.build.variant=adafruit32u4
+adafruit32u4.build.board=AVR_ADAFRUIT32U4
+adafruit32u4.build.usb_product="32u4 Breakout"
+adafruit32u4.build.usb_manufacturer="Adafruit"
+adafruit32u4.build.extra_flags={build.usb_flags}
+adafruit32u4.upload.protocol=avr109
+adafruit32u4.upload.maximum_size=28672
+adafruit32u4.upload.speed=57600
+adafruit32u4.upload.disable_flushing=true
+adafruit32u4.upload.use_1200bps_touch=true
+adafruit32u4.upload.wait_for_upload_port=true
+adafruit32u4.upload.tool=arduino:avrdude
+adafruit32u4.vid.0=0x239A
+adafruit32u4.pid.0=0x8001
