@@ -44,14 +44,37 @@
 //            GND  4|    |5  PB0 (D 0) pwm0
 //                  +----+
 
+#define NUM_DIGITAL_PINS            3
+#define NUM_ANALOG_INPUTS           1
 #define LED_BUILTIN 1
+
+#define PIN_A0               (6)
+#define PIN_A1               (7)
+#define PIN_A2               (8)
+#define PIN_A3               (9)
+
+static const uint8_t A0 = PIN_A0;
+static const uint8_t A1 = PIN_A1;
+static const uint8_t A2 = PIN_A2;
+static const uint8_t A3 = PIN_A3;
 
 #define digitalPinToPCICR(p)    ( ((p) >= 0 && (p) <= 4) ? (&GIMSK) : ((uint8_t *)0) )
 #define digitalPinToPCICRbit(p) ( PCIE )
 #define digitalPinToPCMSK(p)    ( ((p) <= 4) ? (&PCMSK) : ((uint8_t *)0) )
 #define digitalPinToPCMSKbit(p) ( (p) )
 
+#define digitalPinToInterrupt(p)  ((p) == 2 ? 0 : NOT_AN_INTERRUPT)
+
+#define analogPinToChannel(p)   ( (p) < 6 ? (p) : (p) - 6 )
+
+#define TCCR1A GTCCR
+
 #ifdef ARDUINO_MAIN
+
+void initVariant()
+{
+	GTCCR |= (1 << PWM1B);
+}
 
 // these arrays map port names (e.g. port B) to the
 // appropriate addresses for various functions (e.g. reading
@@ -81,7 +104,10 @@ const uint8_t PROGMEM digital_pin_to_port_PGM[] = {
 	PB,
 	PB, 
 	PB, // 5
-
+	PB, // A0
+	PB,
+	PB,
+	PB, // A4
 };
 
 const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {
@@ -91,7 +117,10 @@ const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {
 	_BV(3), /* 3 port B */
 	_BV(4),
 	_BV(5),
-
+	_BV(5),
+	_BV(2),
+	_BV(4),
+	_BV(3),
 };
 
 const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
@@ -100,6 +129,10 @@ const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
 	NOT_ON_TIMER,
 	NOT_ON_TIMER,
 	TIMER1B,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
+	NOT_ON_TIMER,
 	NOT_ON_TIMER,
 };
 
