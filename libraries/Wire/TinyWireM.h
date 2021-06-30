@@ -83,6 +83,8 @@ class TinyM_USI_TWI
 
 extern TinyM_USI_TWI Wire;
 
+typedef TinyM_USI_TWI TwoWire;
+
 #endif
 
 #endif //attiny85

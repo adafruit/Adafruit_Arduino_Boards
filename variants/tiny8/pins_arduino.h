@@ -47,6 +47,7 @@
 #define NUM_DIGITAL_PINS            3
 #define NUM_ANALOG_INPUTS           1
 #define LED_BUILTIN 1
+#define SPI_INTERFACES_COUNT 0
 
 #define PIN_A0               (6)
 #define PIN_A1               (7)
