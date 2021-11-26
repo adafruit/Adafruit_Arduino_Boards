@@ -17,6 +17,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
   Modified 2012 by Todd Krein (todd@krein.org) to implement repeated starts
+  Modified January 2017 by Bjorn Hammarberg (bjoham@github.com) - i2c slave support
 */
 
 #ifndef __AVR_ATtiny85__
@@ -59,7 +60,7 @@ static volatile uint8_t twi_txBufferLength;
 static uint8_t twi_rxBuffer[TWI_BUFFER_LENGTH];
 static volatile uint8_t twi_rxBufferIndex;
 
-static volatile uint8_t twi_error;
+static volatile uint8_t twi_error = 0xFF;
 
 /* 
  * Function twi_init
@@ -500,14 +501,12 @@ ISR(TWI_vect)
       if(twi_rxBufferIndex < TWI_BUFFER_LENGTH){
         twi_rxBuffer[twi_rxBufferIndex] = '\0';
       }
-      // sends ack and stops interface for clock stretching
-      twi_stop();
+      // ack future responses and leave slave receiver state
+      twi_releaseBus();
       // callback to user defined callback
       twi_onSlaveReceive(twi_rxBuffer, twi_rxBufferIndex);
       // since we submit rx buffer to "wire" library, we can reset it
       twi_rxBufferIndex = 0;
-      // ack future responses and leave slave receiver state
-      twi_releaseBus();
       break;
     case TW_SR_DATA_NACK:       // data received, returned nack
     case TW_SR_GCALL_DATA_NACK: // data received generally, returned nack
@@ -546,10 +545,8 @@ ISR(TWI_vect)
       break;
     case TW_ST_DATA_NACK: // received nack, we are done 
     case TW_ST_LAST_DATA: // received ack, but we are done already!
-      // ack future responses
-      twi_reply(1);
       // leave slave receiver state
-      twi_state = TWI_READY;
+      twi_releaseBus();
       break;
 
     // All
